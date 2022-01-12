@@ -52,6 +52,7 @@ export function register(config) {
   }
 }
 
+const CHECK_INTERVAL_TIME = 1000 * 60 * 3 // 3 min
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
@@ -90,6 +91,12 @@ function registerValidSW(swUrl, config) {
           }
         };
       };
+      registration.update().then(() => console.debug("Checked for update...")).catch(console.error)
+
+      setInterval(() => {
+        console.debug("Checked again for update...");
+        registration.update().catch(console.error);
+      }, CHECK_INTERVAL_TIME);
     })
     .catch((error) => {
       console.error('Error during service worker registration:', error);
