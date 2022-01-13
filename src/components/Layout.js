@@ -7,13 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem, ListItemIcon, ListItemText, ListSubheader, Switch } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import BrowserUpdatedOutlinedIcon from '@mui/icons-material/BrowserUpdatedOutlined';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
 import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
+import { store } from '../utils/store';
 
 const drawerWidth = 360;
 
@@ -46,6 +47,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 function Layout() {
 
     const [open, setOpen] = useState(true);
+    const { state, dispatch } = useContext(store);
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -61,11 +64,13 @@ function Layout() {
                 open={open}
             >
                 <Toolbar
+                    sx={{ pl: '28px !important' }}
                 >
                     <IconButton
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
+                        // sx={{ ml: 0 }}
                         onClick={toggleDrawer}
                     // sx={{
                     //     marginRight: '36px',
@@ -99,17 +104,17 @@ function Layout() {
 
                 </List>
                 <List sx={{ mt: 'auto', p: 1 }}>
-                    <ListItem button sx={{ borderRadius: 15, mb: 1 }}>
+                    <ListItem button sx={{ borderRadius: 15, mb: 1 }} onClick={() => dispatch({ type: 'SET_THEME', payload: !state.isLightTheme })}>
                         <ListItemIcon>
                             <NightsStayOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Dark Mode" />
                         <Switch
                             edge="end"
-                            onChange={() => null}
-                            // checked={checked.indexOf('wifi') !== -1}
+                            checked={!state.isLightTheme}
+                            onChange={() => dispatch({ type: 'SET_THEME', payload: !state.isLightTheme })}
                             inputProps={{
-                                'aria-labelledby': 'switch-list-label-wifi',
+                                'aria-labelledby': 'theme-toggle',
                             }}
                         />
                     </ListItem>
@@ -150,7 +155,7 @@ function CustomLink({ children, to, ...props }) {
             component={Link}
             button
             sx={{ borderRadius: 15, mb: 1 }}
-            selected={match}
+            selected={!!match}
             to={to}
             {...props}
         >

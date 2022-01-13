@@ -1,47 +1,21 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import PropTypes from 'prop-types';
 import { APP_NAME } from '../config/constants';
 
 export default function SEO({ description, title, siteTitle }) {
   return (
-    <Helmet
-      title={title}
-      titleTemplate={siteTitle ? `%s | ${siteTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          content: description,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: 'ITESaurabh',
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: description,
-        },
-      ]}
-    />
+    <Helmet prioritizeSeoTags>
+       <title>{`${title} | ${siteTitle}`}</title>
+      <meta name="description" content={description} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:site_name" content={siteTitle} />
+      <meta property="twitter:card" content="summary" />
+      {/* <meta property="twitter:creator" content={config.social.twitter} /> */}
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+    </Helmet>
   )
 }
 
@@ -53,6 +27,6 @@ SEO.propTypes = {
 
 SEO.defaultProps = {
     title: APP_NAME,
-    siteTitle: 'Brunch PWA v2',
+    siteTitle: 'Brunch PWA V2',
     description: 'A PWA to easily update brunch and install add-ons'
 }

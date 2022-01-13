@@ -5,9 +5,9 @@ import SEO from '../components/SEO';
 const BrunchUp = () => {
     return (
         <div>
-            <SEO title="Home" />
+            <SEO title="Brunch Updater" />
             <Paper>
-                Home
+                Brunch Up
             </Paper>
         </div>
     );

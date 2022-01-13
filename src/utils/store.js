@@ -1,9 +1,8 @@
 import React, { createContext, useReducer } from 'react';
+import { setTheme } from './CookieUtil';
 
 const initialState = {
-    serviceWorkerInitialized: false,
-    serviceWorkerUpdated: false,
-    serviceWorkerRegistration: null,
+    isLightTheme: true,
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -11,17 +10,14 @@ const { Provider } = store;
 const StateProvider = ({ children }) => {
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
-            case 'SW_INIT':
+            case 'SET_THEME': {
+                setTheme(action.payload)
                 return {
                     ...state,
-                    serviceWorkerInitialized: !state.serviceWorkerInitialized,
+                    isLightTheme: action.payload,
                 };
-            case 'SW_UPDATE':
-                return {
-                    ...state,
-                    serviceWorkerUpdated: !state.serviceWorkerUpdated,
-                    serviceWorkerRegistration: action.payload,
-                };
+            }
+
             default:
                 return state;
         };

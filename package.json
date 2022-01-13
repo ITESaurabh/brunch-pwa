@@ -2,7 +2,7 @@
   "name": "brunch-pwa-v2",
   "version": "0.1.0",
   "author": "Saurabh Tanwar <itesaurabh@yahoo.com> (https://fb.me/ITESaurabh)",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -15,7 +15,7 @@
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^1.2.2",
     "react-hot-toast": "^2.2.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",

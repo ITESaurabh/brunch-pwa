@@ -1,5 +1,5 @@
-import { Button, createTheme, CssBaseline, IconButton, Snackbar, ThemeProvider, useMediaQuery } from "@mui/material";
-import { Suspense, useEffect, useState } from "react";
+import { Button, createTheme, CssBaseline, IconButton, Snackbar, ThemeProvider } from "@mui/material";
+import { Suspense, useEffect, useState, useContext } from "react";
 import { useRoutes } from "react-router-dom";
 import Splash from "./components/Splash";
 import { getTheme } from "./utils/CookieUtil";
@@ -7,6 +7,7 @@ import routes from "./utils/routes";
 import CloseIcon from '@mui/icons-material/Close';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Grow from '@mui/material/Grow';
+import { store } from "./utils/store";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -50,14 +51,21 @@ const getDesignTokens = (mode) => ({
 });
 
 function App() {
-  let isWantDark = useMediaQuery('(prefers-color-scheme: dark)');
-  const the = getTheme()
+  const { dispatch } = useContext(store);
   const [isUpdateAvailable, setIsUpdateAvailable] = useState(false)
   const [waitingWorker, setWaitingWorker] = useState(null)
-
-  let themePref = (the === undefined) ? (isWantDark ? 'dark' : 'light') : 'light'
+  const currTheme = getTheme()
+  let themePref = currTheme ? 'light' : 'dark'
   let element = useRoutes(routes);
   const darkModeTheme = createTheme(getDesignTokens(themePref));
+
+  useEffect(() => {
+    if (currTheme === undefined) {
+      dispatch({ type: 'SET_THEME', payload: true })
+    } else {
+        dispatch({ type: 'SET_THEME', payload: currTheme })
+    }
+  }, [currTheme, dispatch])
 
   const reloadPage = () => {
     waitingWorker?.postMessage({ type: 'SKIP_WAITING' });

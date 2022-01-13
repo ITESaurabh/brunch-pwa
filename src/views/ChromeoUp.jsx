@@ -3,7 +3,7 @@ import React from 'react';
 const ChromoUp = () => {
     return (
         <div>
-            Sign up
+            Chrome Up
         </div>
     );
 };
