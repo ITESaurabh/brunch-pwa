@@ -52,7 +52,7 @@ function Layout() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-
+    // console.log("GLO", state);
     // const theme = useTheme()
 
 
