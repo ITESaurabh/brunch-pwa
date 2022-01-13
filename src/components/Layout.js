@@ -5,8 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem, ListItemIcon, ListItemText, ListSubheader, Switch } from '@mui/material';
 import { useState } from 'react';
@@ -15,6 +13,7 @@ import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import BrowserUpdatedOutlinedIcon from '@mui/icons-material/BrowserUpdatedOutlined';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
+import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
 
 const drawerWidth = 360;
 
@@ -53,6 +52,7 @@ function Layout() {
 
     // const theme = useTheme()
 
+
     return (
         <Box sx={{ display: 'flex' }}>
             <Drawer
@@ -78,24 +78,25 @@ function Layout() {
                 </Toolbar>
                 <List sx={{ p: 1 }}>
                     <ListSubheader sx={{ mt: -2.6 }} inset={open ? false : true}>Brunch PWA</ListSubheader>
-                    <ListItem button sx={{ borderRadius: 15, mb: 1 }}>
+                    <CustomLink to="/">
                         <ListItemIcon >
                             <BrowserUpdatedOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Brunch Updater" />
-                    </ListItem>
-                    <ListItem button sx={{ borderRadius: 15 }}>
+                    </CustomLink>
+                    <CustomLink to="/chromeos-updates">
                         <ListItemIcon>
                             <UpdateOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="ChromeOS Updater" />
-                    </ListItem>
-                    <ListItem button sx={{ borderRadius: 15 }}>
+                    </CustomLink>
+                    <CustomLink to="/addons">
                         <ListItemIcon>
                             <ExtensionOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Addons" />
-                    </ListItem>
+                    </CustomLink>
+
                 </List>
                 <List sx={{ mt: 'auto', p: 1 }}>
                     <ListItem button sx={{ borderRadius: 15, mb: 1 }}>
@@ -112,62 +113,51 @@ function Layout() {
                             }}
                         />
                     </ListItem>
-                    <ListItem button sx={{ borderRadius: 15 }}>
+                    <CustomLink to="/settings">
                         <ListItemIcon>
                             <SettingsOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Settings" />
-                    </ListItem>
+                    </CustomLink>
                 </List>
             </Drawer>
             <Box
                 component="main"
                 sx={{
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                            ? theme.palette.grey[100]
-                            : theme.palette.grey[900],
+                    // backgroundColor: (theme) =>
+                    //     theme.palette.mode === 'light'
+                    //         ? theme.palette.grey[900]
+                    //         : theme.palette.grey[900],
                     flexGrow: 1,
                     height: '100vh',
                     overflow: 'auto',
                 }}
             >
                 <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                }}
-                            >
-                                <h1>awdadwa</h1>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                }}
-                            >
-                                <h1>awdadwa215131</h1>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                <h1>awdadwadawd84a68d60 awa</h1>
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                    <Outlet />
                 </Container>
             </Box>
         </Box>
     );
 }
+
+function CustomLink({ children, to, ...props }) {
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <ListItem
+            component={Link}
+            button
+            sx={{ borderRadius: 15, mb: 1 }}
+            selected={match}
+            to={to}
+            {...props}
+        >
+            {children}
+        </ListItem>
+    );
+}
+
 
 export default Layout;
