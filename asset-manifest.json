@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/brunch-pwa/static/js/main.05b4971d.js",
+    "service-worker.js": "/brunch-pwa/service-worker.js",
+    "index.html": "/brunch-pwa/index.html",
+    "main.05b4971d.js.map": "/brunch-pwa/static/js/main.05b4971d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.05b4971d.js"
+  ]
+}
