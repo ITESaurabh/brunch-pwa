@@ -15,6 +15,7 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
 import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
 import { store } from '../utils/store';
+import { APP_VERSION } from '../config/constants';
 
 const drawerWidth = 360;
 
@@ -82,7 +83,7 @@ function Layout() {
 
                 </Toolbar>
                 <List sx={{ p: 1 }}>
-                    <ListSubheader sx={{ mt: -2.6 }} inset={open ? false : true}>Brunch PWA</ListSubheader>
+                    <ListSubheader sx={{ mt: -2.6 }} inset={open ? false : true}>Brunch PWA {APP_VERSION}</ListSubheader>
                     <CustomLink to="/">
                         <ListItemIcon >
                             <BrowserUpdatedOutlinedIcon />
@@ -128,6 +129,7 @@ function Layout() {
             </Drawer>
             <Box
                 component="main"
+                className="main_bg"
                 sx={{
                     // backgroundColor: (theme) =>
                     //     theme.palette.mode === 'light'
@@ -138,7 +140,7 @@ function Layout() {
                     overflow: 'auto',
                 }}
             >
-                <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                <Container maxWidth="lg" sx={{ mt: 3, mb: 2 }}>
                     <Outlet />
                 </Container>
             </Box>

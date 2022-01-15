@@ -9,6 +9,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Grow from '@mui/material/Grow';
 import { store } from "./utils/store";
 import Cookies from "js-cookie";
+import './App.css';
 
 const getDesignTokens = (mode) => ({
   palette: {
