@@ -84,19 +84,19 @@ function Layout() {
                 </Toolbar>
                 <List sx={{ p: 1 }}>
                     <ListSubheader sx={{ mt: -2.6 }} inset={open ? false : true}>Brunch PWA {APP_VERSION}</ListSubheader>
-                    <CustomLink to="/">
+                    <CustomLink to="/brunch-pwa">
                         <ListItemIcon >
                             <BrowserUpdatedOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Brunch Updater" />
                     </CustomLink>
-                    <CustomLink to="/chromeos-updates">
+                    <CustomLink to="/brunch-pwa/chromeos-updates">
                         <ListItemIcon>
                             <UpdateOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="ChromeOS Updater" />
                     </CustomLink>
-                    <CustomLink to="/addons">
+                    <CustomLink to="/brunch-pwa/addons">
                         <ListItemIcon>
                             <ExtensionOutlinedIcon />
                         </ListItemIcon>
@@ -119,7 +119,7 @@ function Layout() {
                             }}
                         />
                     </ListItem>
-                    <CustomLink to="/settings">
+                    <CustomLink to="/brunch-pwa/settings">
                         <ListItemIcon>
                             <SettingsOutlinedIcon />
                         </ListItemIcon>
