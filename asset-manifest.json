@@ -1,11 +1,15 @@
 {
   "files": {
-    "main.js": "/brunch-pwa/static/js/main.05b4971d.js",
+    "main.css": "/brunch-pwa/static/css/main.12b1f2d8.css",
+    "main.js": "/brunch-pwa/static/js/main.b66a0049.js",
+    "static/media/bg.png": "/brunch-pwa/static/media/bg.a156850ddf9596c4bb76.png",
     "service-worker.js": "/brunch-pwa/service-worker.js",
     "index.html": "/brunch-pwa/index.html",
-    "main.05b4971d.js.map": "/brunch-pwa/static/js/main.05b4971d.js.map"
+    "main.12b1f2d8.css.map": "/brunch-pwa/static/css/main.12b1f2d8.css.map",
+    "main.b66a0049.js.map": "/brunch-pwa/static/js/main.b66a0049.js.map"
   },
   "entrypoints": [
-    "static/js/main.05b4971d.js"
+    "static/css/main.12b1f2d8.css",
+    "static/js/main.b66a0049.js"
   ]
 }
