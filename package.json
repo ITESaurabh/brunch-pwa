@@ -1,6 +1,7 @@
 {
   "name": "brunch-pwa-v2",
   "version": "0.1.0",
+  "homepage": "https://itesaurabh.github.io/brunch-pwa",
   "author": "Saurabh Tanwar <itesaurabh@yahoo.com> (https://fb.me/ITESaurabh)",
   "private": true,
   "dependencies": {
