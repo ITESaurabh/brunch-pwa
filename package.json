@@ -2,7 +2,7 @@
   "name": "brunch-pwa-v2",
   "version": "0.1.0",
   "author": "Saurabh Tanwar <itesaurabh@yahoo.com> (https://fb.me/ITESaurabh)",
-  "homepage": "https://itesaurabh.github.io/brunch-pwa/",
+  "homepage": "https://itesaurabh.github.io/brunch-pwa/",  
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
