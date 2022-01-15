@@ -9,20 +9,20 @@ import ChromoUp from "../views/ChromeoUp";
 
 const routes = [
   {
-    path: "/",
+    path: "/brunch-pwa",
     element: <Layout />,
     children: [
       { index: true, element: <BrunchUp /> },
       {
-        path: "/chromeos-updates",
+        path: "chromeos-updates",
         element: <ChromoUp />,
       },
       {
-        path: "/addons",
+        path: "addons",
         element: <Addons />,
       },
       {
-        path: "/settings",
+        path: "settings",
         element: <Settings />,
         // children: [
         //   { path: "/settings/:slug", element: <Event /> }
