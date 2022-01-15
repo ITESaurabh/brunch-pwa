@@ -60,8 +60,34 @@ function App() {
   let element = useRoutes(routes);
   const darkModeTheme = createTheme(getDesignTokens(themePref));
 
+  useEffect(() => {
+    if (currTheme === undefined) {
+      dispatch({ type: 'SET_THEME', payload: true })
+    } else {
+      dispatch({ type: 'SET_THEME', payload: currTheme })
+    }
+  }, [currTheme, dispatch])
 
-  const checkUpdates = () => {
+  const reloadPage = () => {
+    waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
+    setIsUpdateAvailable(false);
+    window.location.reload(true);
+  };
+
+  // const time = useRef(Date.now()); //can be let, depending of your logic
+
+  useEffect(() => {
+    serviceWorkerRegistration.register({
+      onSuccess(registration) {
+        console.debug('serviceWorkerRegistration success')
+      },
+      onUpdate: (registration) => {
+        setIsUpdateAvailable(true);
+        console.log("reggg", registration);
+        setWaitingWorker(registration.waiting);
+      }
+    })
+
     if (!Cookies.get("latest_stable")) {
 
       let ws = new WebSocket("ws://localhost:8080");
@@ -122,36 +148,8 @@ function App() {
     } else {
       dispatch({ type: 'SET_ALL_TO_STATE' });
     }
-  }
-  useEffect(() => {
-    if (currTheme === undefined) {
-      dispatch({ type: 'SET_THEME', payload: true })
-    } else {
-      dispatch({ type: 'SET_THEME', payload: currTheme })
-    }
-  }, [currTheme, dispatch])
 
-  const reloadPage = () => {
-    waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
-    setIsUpdateAvailable(false);
-    window.location.reload(true);
-  };
-
-  // const time = useRef(Date.now()); //can be let, depending of your logic
-
-  useEffect(() => {
-    checkUpdates()
-    serviceWorkerRegistration.register({
-      onSuccess(registration) {
-        console.debug('serviceWorkerRegistration success')
-      },
-      onUpdate: (registration) => {
-        setIsUpdateAvailable(true);
-        console.log("reggg", registration);
-        setWaitingWorker(registration.waiting);
-      }
-    })
-  }, [])
+  }, [dispatch])
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
