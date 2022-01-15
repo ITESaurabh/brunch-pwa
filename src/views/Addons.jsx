@@ -1,10 +1,7 @@
 import { Alert, Button, Card, CardContent, Grid, ListItem, ListItemText, Typography } from '@mui/material';
 import SEO from '../components/SEO';
-import { useContext } from 'react';
-import { store } from '../utils/store';
 
 const Addons = () => {
-    const { state } = useContext(store)
 
     return (
         <div>

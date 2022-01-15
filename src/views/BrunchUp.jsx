@@ -1,14 +1,8 @@
-import { Paper, Toolbar, Typography, Grid, Card, CardContent, CardActions, Button } from '@mui/material';
+import { Typography, Grid, Card, CardContent, Button } from '@mui/material';
 import SEO from '../components/SEO';
 
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
 import { useContext } from 'react';
 import { store } from '../utils/store';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
