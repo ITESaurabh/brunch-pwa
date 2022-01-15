@@ -1,8 +1,9 @@
-import React from 'react';
+import SEO from '../components/SEO';
 
 const ChromoUp = () => {
     return (
         <div>
+            <SEO title="Chrome OS Updater" />
             Chrome Up
         </div>
     );

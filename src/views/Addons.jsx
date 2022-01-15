@@ -1,8 +1,9 @@
-import React from 'react';
+import SEO from '../components/SEO';
 
 const Addons = () => {
     return (
         <div>
+              <SEO title="Brunch Addons" />
             Addons
         </div>
     );
