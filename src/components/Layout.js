@@ -84,8 +84,8 @@ function Layout() {
                 </Toolbar>
                 <List sx={{ p: 1 }}>
                     <ListSubheader sx={{ mt: -2.6 }} inset={open ? false : true}>Brunch PWA {APP_VERSION}</ListSubheader>
-                    <CustomLink to="/brunch-pwa">
-                        <ListItemIcon >
+                    <CustomLink to="/brunch-pwa/brunch-updates">
+                        <ListItemIcon>
                             <BrowserUpdatedOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText primary="Brunch Updater" />

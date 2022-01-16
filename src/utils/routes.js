@@ -5,6 +5,7 @@ import NotFound from "../views/NotFound";
 import Settings from "../views/Settings"
 import BrunchUp from "../views/BrunchUp";
 import ChromoUp from "../views/ChromeoUp";
+import { Navigate } from "react-router-dom";
 
 
 const routes = [
@@ -12,7 +13,14 @@ const routes = [
     path: "/brunch-pwa",
     element: <Layout />,
     children: [
-      { index: true, element: <BrunchUp /> },
+      {
+        index: true,
+        element: <Navigate to="brunch-updates" />
+      },
+      {
+        path: "brunch-updates",
+        element: <BrunchUp />
+      },
       {
         path: "chromeos-updates",
         element: <ChromoUp />,
