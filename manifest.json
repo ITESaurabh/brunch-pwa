@@ -1,7 +1,7 @@
 {
   "name": "Brunch PWA V2",
   "short_name": "Brunch PWA",
-  "start_url": "/brunch-pwa",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#131313",
   "description": "An application to easily update brunch and install add-ons. now with sexier Ui ;-)",
@@ -9,7 +9,7 @@
   "categories": "brunch,chromeos,updater,pwa",
   "lang": "en",
   "orientation": "any",
-  "scope": "./brunch-pwa",
+  "scope": "/brunch-pwa/",
   "theme_color": "#131313",
   "icons": [
       {
