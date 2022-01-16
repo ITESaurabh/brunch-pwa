@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.9ee15b7c.css","mappings":"AAAA,SACE,oEAAyC,CACzC,wCAAyC,CACzC,2BAA4B,CAC5B,mBACF","sources":["App.css"],"sourcesContent":[".main_bg {\n  background-image: url('../public/bg.png');\n  background-position: right 1em bottom 2em;\n  background-repeat: no-repeat;\n  background-size: 30%;\n}\n"],"names":[],"sourceRoot":""}

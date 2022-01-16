@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/brunch-pwa/static/css/main.12b1f2d8.css",
-    "main.js": "/brunch-pwa/static/js/main.c4cf7c48.js",
-    "static/media/bg.png": "/brunch-pwa/static/media/bg.a156850ddf9596c4bb76.png",
-    "service-worker.js": "/brunch-pwa/service-worker.js",
-    "index.html": "/brunch-pwa/index.html",
-    "main.12b1f2d8.css.map": "/brunch-pwa/static/css/main.12b1f2d8.css.map",
-    "main.c4cf7c48.js.map": "/brunch-pwa/static/js/main.c4cf7c48.js.map"
+    "main.css": "./static/css/main.9ee15b7c.css",
+    "main.js": "./static/js/main.e2b20762.js",
+    "static/media/bg.png": "./static/media/bg.a156850ddf9596c4bb76.png",
+    "service-worker.js": "./service-worker.js",
+    "index.html": "./index.html",
+    "main.9ee15b7c.css.map": "./static/css/main.9ee15b7c.css.map",
+    "main.e2b20762.js.map": "./static/js/main.e2b20762.js.map"
   },
   "entrypoints": [
-    "static/css/main.12b1f2d8.css",
-    "static/js/main.c4cf7c48.js"
+    "static/css/main.9ee15b7c.css",
+    "static/js/main.e2b20762.js"
   ]
 }
