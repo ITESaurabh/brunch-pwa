@@ -9,7 +9,7 @@
   "categories": "brunch,chromeos,updater,pwa",
   "lang": "en",
   "orientation": "any",
-  "scope": "/brunch-pwa",
+  "scope": "./brunch-pwa",
   "theme_color": "#131313",
   "icons": [
       {
