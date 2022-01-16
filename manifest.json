@@ -1,7 +1,7 @@
 {
   "name": "Brunch PWA V2",
   "short_name": "Brunch PWA",
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#131313",
   "description": "An application to easily update brunch and install add-ons. now with sexier Ui ;-)",
