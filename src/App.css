@@ -4,3 +4,13 @@
   background-repeat: no-repeat;
   background-size: 30%;
 }
+
+.konsole {
+  font-family: monospace !important;
+  padding: 1em;
+  @keyframes change {
+    0%  { color:  #0f0; }
+    50% { color:  #0f0; }
+    99% { color: black; }
+}
+}

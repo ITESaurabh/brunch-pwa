@@ -1,4 +1,4 @@
-export var globalLog = "";
+export var globalLog = "fetching logs....</br>";
 export let ws = new WebSocket("ws://localhost:8080");
 export default function ws_connect(dispatch) {
 
@@ -53,7 +53,7 @@ export default function ws_connect(dispatch) {
           dispatch({ type: 'SET_CHROS_LATEST', payload: messages[1] });
           break;
         }
-        globalLog += messages[i] + '<br>';
+        globalLog += messages[i] + '<br/>';
       }
     }
 }

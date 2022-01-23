@@ -1,14 +1,16 @@
-import { Typography, Grid, Card, CardContent, Button } from '@mui/material';
+import { Typography, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, LinearProgress, Paper } from '@mui/material';
 import SEO from '../components/SEO';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { store } from '../utils/store';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { globalLog, ws } from '../utils/wsUtil';
 
 const BrunchUp = () => {
     const { state } = useContext(store)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
     console.log(state);
     return (
         <div>
@@ -45,7 +47,10 @@ const BrunchUp = () => {
                                         <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
                                             Change-log
                                         </Button>
-                                        <Button size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
+                                        <Button onClick={() => {
+                                            setIsDialogOpen(true);
+                                            ws.send("update-stable");
+                                            }} size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
                                             Update
                                         </Button>
                                     </>
@@ -88,6 +93,18 @@ const BrunchUp = () => {
                     </Card>
                 </Grid>
             </Grid>
+            <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
+                <LinearProgress color="secondary" />
+                <DialogTitle>Updating Brunch...</DialogTitle>
+
+                <DialogContent>
+                    <Typography mb={1}>Please Don't close this application while update is going on</Typography>
+                    <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
+                        <Typography align='center'>LOGS</Typography>
+                        <div dangerouslySetInnerHTML={{ __html: globalLog }} />
+                    </Paper>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };
