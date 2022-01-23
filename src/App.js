@@ -60,7 +60,6 @@ function App() {
   let themePref = currTheme ? 'light' : 'dark'
   let element = useRoutes(routes);
   const darkModeTheme = createTheme(getDesignTokens(themePref));
-
   useEffect(() => {
     if (currTheme === undefined) {
       dispatch({ type: 'SET_THEME', payload: true })

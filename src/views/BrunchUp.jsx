@@ -9,7 +9,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const BrunchUp = () => {
     const { state } = useContext(store)
-
+    console.log(state);
     return (
         <div>
             <SEO title="Brunch Updater" />
@@ -21,7 +21,7 @@ const BrunchUp = () => {
                                 Current installed Brunch
                             </Typography>
                             <Typography variant="h6" component="div" textAlign={"center"} fontWeight={500}>
-                                Brunch r94 20211127
+                                {state.brunch_version}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -45,14 +45,14 @@ const BrunchUp = () => {
                                         <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
                                             Change-log
                                         </Button>
-                                        <Button size="large" edge="end" variant="contained">
+                                        <Button size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
                                             Update
                                         </Button>
                                     </>
                                 }
                             >
                                 <ListItemText
-                                    primary="Brunch r94 stable 20211121"
+                                    primary={state.latest_stable}
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>
@@ -80,7 +80,7 @@ const BrunchUp = () => {
                                 }
                             >
                                 <ListItemText
-                                    primary="Brunch r97 unstable 20220112"
+                                    primary={state.latest_unstable}
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>

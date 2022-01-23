@@ -19,7 +19,7 @@ const ChromoUp = () => {
                                 Current ChromeOS Version
                             </Typography>
                             <Typography variant="h6" component="div" textAlign={"center"} fontWeight={500}>
-                                rammus R94
+                                {state.chromeos_version}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -50,7 +50,7 @@ const ChromoUp = () => {
                                 }
                             >
                                 <ListItemText
-                                    primary="rammus R96"
+                                    primary={state.latest_chromeos}
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>
