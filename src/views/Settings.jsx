@@ -27,21 +27,13 @@ const Settings = () => {
                                     <Stack spacing={2} direction={"row"}>
                                         <Typography variant='h5' sx={{ pt: 1 }}>Brunch PWA </Typography>
                                         <Typography variant='subtitle2' sx={{ pt: 1, ml: '4px !important', color: "#f2c300" }}>Version 2</Typography>
-                                        <IconButton target="_blank" sx={{ ml: '4px !important'}} href="https://github.com/ITESaurabh/brunch-pwa-v2" size="small">
+                                        <IconButton target="_blank" sx={{ ml: '4px !important' }} href="https://github.com/ITESaurabh/brunch-pwa-v2" size="small">
                                             <GitHubIcon />
                                         </IconButton>
                                     </Stack>
                                     <Typography variant='body1' sx={{ fontWeight: 500 }}> by <Link target="_blank" sx={{ color: theme.palette.secondary.main }} href="https://github.com/ITESaurabh">ITESaurabh</Link></Typography>
-                                    <Typography variant='body1'>Special thanks to <Link target="_blank" sx={{ color: theme.palette.secondary.main }} href="https://github.com/sebanc">Sebanc</Link></Typography>
+                                    <Typography variant='body1'>Special thanks to <Link target="_blank" sx={{ color: theme.palette.secondary.main }} href="https://github.com/sebanc">Sebanc</Link> & Team</Typography>
                                 </Stack>
-
-
-
-                            </Stack>
-                            <Stack direction={"row"}>
-
-
-
                             </Stack>
                         </CardContent>
                     </Card>
