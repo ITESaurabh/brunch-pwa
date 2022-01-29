@@ -1,4 +1,4 @@
-export var globalLog = "fetching logs....</br>";
+export let globalLog = "fetching logs....</br>";
 export let ws = new WebSocket("ws://localhost:8080");
 export default function ws_connect(dispatch) {
 

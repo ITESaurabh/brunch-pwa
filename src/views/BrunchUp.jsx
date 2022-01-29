@@ -11,7 +11,8 @@ import { globalLog, ws } from '../utils/wsUtil';
 const BrunchUp = () => {
     const { state } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    console.log(state);
+    const [logs, setLogs] = useState("fetching logs....</br>")
+    // console.log(state);
     return (
         <div>
             <SEO title="Brunch Updater" />
@@ -50,7 +51,13 @@ const BrunchUp = () => {
                                         <Button onClick={() => {
                                             setIsDialogOpen(true);
                                             ws.send("update-stable");
-                                            }} size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
+                                            ws.onmessage = async function (evt) {
+                                                var messages = evt.data.split(':next:');
+                                                for (var i = 0; i < messages.length; i++) {
+                                                    setLogs(messages[i])
+                                                }
+                                            }
+                                        }} size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
                                             Update
                                         </Button>
                                     </>
@@ -101,7 +108,7 @@ const BrunchUp = () => {
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
                         <Typography align='center'>LOGS</Typography>
-                        <div dangerouslySetInnerHTML={{ __html: globalLog }} />
+                        <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>
             </Dialog>
