@@ -12,6 +12,8 @@ const BrunchUp = () => {
     const { state } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [logs, setLogs] = useState("fetching logs....</br>")
+    const [isUpdateDone, setIsUpdateDone] = useState(false)
+
     // console.log(state);
     return (
         <div>
@@ -54,10 +56,15 @@ const BrunchUp = () => {
                                             ws.onmessage = async function (evt) {
                                                 var messages = evt.data.split(':next:');
                                                 for (var i = 0; i < messages.length; i++) {
+                                                    if (messages[i] === "Brunch updated.") {
+                                                        setIsUpdateDone(true)
+                                                    }
                                                     setLogs(messages[i])
                                                 }
                                             }
-                                        }} size="large" edge="end" variant="contained" disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}>
+                                        }} size="large" edge="end" variant="contained"
+                                        // disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}
+                                        >
                                             Update
                                         </Button>
                                     </>
@@ -111,7 +118,9 @@ const BrunchUp = () => {
                         <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>
-                <Button onClick={()=> ws.send("reboot")}>Reboot</Button>
+                {isUpdateDone &&
+                        <Button sx={{m:1}} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                }
             </Dialog>
         </div>
     );
