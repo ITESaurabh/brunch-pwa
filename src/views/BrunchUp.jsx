@@ -92,21 +92,21 @@ const BrunchUp = () => {
                                         <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch-unstable/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
                                             Change-log
                                         </Button>
-                                        <Button 
-                                        onClick={() => {
-                                            setIsDialogOpen(true);
-                                            ws.send("update-unstable");
-                                            ws.onmessage = async function (evt) {
-                                                var messages = evt.data.split(':next:');
-                                                for (var i = 0; i < messages.length; i++) {
-                                                    if (messages[i] === "Brunch updated.") {
-                                                        setIsUpdateDone(true)
+                                        <Button
+                                            onClick={() => {
+                                                setIsDialogOpen(true);
+                                                ws.send("update-unstable");
+                                                ws.onmessage = async function (evt) {
+                                                    var messages = evt.data.split(':next:');
+                                                    for (var i = 0; i < messages.length; i++) {
+                                                        if (messages[i] === "Brunch updated.") {
+                                                            setIsUpdateDone(true)
+                                                        }
+                                                        setLogs(messages[i])
                                                     }
-                                                    setLogs(messages[i])
                                                 }
-                                            }
-                                        }}
-                                        size="large" edge="end" variant="contained">
+                                            }}
+                                            size="large" edge="end" variant="contained">
                                             Update
                                         </Button>
                                     </>
@@ -122,7 +122,7 @@ const BrunchUp = () => {
                 </Grid>
             </Grid>
             <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
-                <LinearProgress color="secondary" />
+                {!isUpdateDone && <LinearProgress color="secondary" />}
                 <DialogTitle>Updating Brunch...</DialogTitle>
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
@@ -132,7 +132,7 @@ const BrunchUp = () => {
                     </Paper>
                 </DialogContent>
                 {isUpdateDone &&
-                        <Button sx={{m:1}} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                    <Button sx={{ m: 1 }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
                 }
             </Dialog>
         </div>
