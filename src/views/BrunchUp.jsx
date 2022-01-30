@@ -50,22 +50,24 @@ const BrunchUp = () => {
                                         <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
                                             Change-log
                                         </Button>
-                                        <Button onClick={() => {
-                                            setIsDialogOpen(true);
-                                            ws.send("update-stable");
-                                            ws.onmessage = async function (evt) {
-                                                var messages = evt.data.split(':next:');
-                                                for (var i = 0; i < messages.length; i++) {
-                                                    if (messages[i] === "Brunch updated.") {
-                                                        setIsUpdateDone(true)
+                                        <Button
+                                            onClick={() => {
+                                                setIsDialogOpen(true);
+                                                ws.send("update-stable");
+                                                ws.onmessage = async function (evt) {
+                                                    var messages = evt.data.split(':next:');
+                                                    for (var i = 0; i < messages.length; i++) {
+                                                        if (messages[i] === "Brunch updated.") {
+                                                            setIsUpdateDone(true)
+                                                        }
+                                                        setLogs(messages[i])
                                                     }
-                                                    setLogs(messages[i])
                                                 }
-                                            }
-                                        }} size="large" edge="end" variant="contained"
-                                        // disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}
+                                            }}
+                                            size="large" edge="end" variant="contained"
+                                            disabled={state.latest_stable.replace(" stable", '') === state.brunch_version}
                                         >
-                                            Update
+                                             {state.latest_stable.replace(" stable", '') === state.brunch_version ? 'Installed': 'Update'}
                                         </Button>
                                     </>
                                 }
@@ -106,8 +108,10 @@ const BrunchUp = () => {
                                                     }
                                                 }
                                             }}
-                                            size="large" edge="end" variant="contained">
-                                            Update
+                                            size="large" edge="end" variant="contained"
+                                            disabled={state.latest_unstable.replace(" unstable", '') === state.brunch_version}
+                                        >
+                                            {state.latest_unstable.replace(" unstable", '') === state.brunch_version ? 'Installed': 'Update'}
                                         </Button>
                                     </>
                                 }
