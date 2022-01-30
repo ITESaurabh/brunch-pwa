@@ -92,7 +92,21 @@ const BrunchUp = () => {
                                         <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch-unstable/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
                                             Change-log
                                         </Button>
-                                        <Button size="large" edge="end" variant="contained">
+                                        <Button 
+                                        onClick={() => {
+                                            setIsDialogOpen(true);
+                                            ws.send("update-unstable");
+                                            ws.onmessage = async function (evt) {
+                                                var messages = evt.data.split(':next:');
+                                                for (var i = 0; i < messages.length; i++) {
+                                                    if (messages[i] === "Brunch updated.") {
+                                                        setIsUpdateDone(true)
+                                                    }
+                                                    setLogs(messages[i])
+                                                }
+                                            }
+                                        }}
+                                        size="large" edge="end" variant="contained">
                                             Update
                                         </Button>
                                     </>
@@ -110,7 +124,6 @@ const BrunchUp = () => {
             <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
                 <LinearProgress color="secondary" />
                 <DialogTitle>Updating Brunch...</DialogTitle>
-
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
