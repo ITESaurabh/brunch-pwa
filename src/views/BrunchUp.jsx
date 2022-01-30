@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useContext, useState } from 'react';
 import { store } from '../utils/store';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { globalLog, ws } from '../utils/wsUtil';
+import { ws } from '../utils/wsUtil';
 
 const BrunchUp = () => {
     const { state } = useContext(store)
@@ -107,10 +107,11 @@ const BrunchUp = () => {
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
-                        <Typography align='center'>LOGS</Typography>
+                        {/* <Typography align='center'>LOGS</Typography> */}
                         <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>
+                <Button onClick={()=> ws.send("reboot")}>Reboot</Button>
             </Dialog>
         </div>
     );
