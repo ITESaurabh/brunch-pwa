@@ -1,12 +1,15 @@
-import { Button, Card, CardContent, Grid, ListItem, ListItemText, Typography } from '@mui/material';
+import { Button, Card, CardContent, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import SEO from '../components/SEO';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { store } from '../utils/store';
 import { blue } from '@mui/material/colors';
+import { ws } from '../utils/wsUtil';
 
 const ChromoUp = () => {
     const { state } = useContext(store)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const [logs, setLogs] = useState("fetching logs....</br>")
+    const [isUpdateDone, setIsUpdateDone] = useState(false)
 
     return (
         <div>
@@ -40,10 +43,23 @@ const ChromoUp = () => {
                                 disablePadding
                                 secondaryAction={
                                     <>
-                                        <Button endIcon={<OpenInNewIcon />} href="https://github.com/sebanc/brunch/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
-                                            Change-log
-                                        </Button>
-                                        <Button size="large" edge="end" variant="contained">
+                                        <Button
+                                            onClick={() => {
+                                                setIsDialogOpen(true);
+                                                ws.send("update-chromeos");
+                                                ws.onmessage = async function (evt) {
+                                                    var messages = evt.data.split(':next:');
+                                                    for (var i = 0; i < messages.length; i++) {
+                                                        if (messages[i] === "<p style=\"color:#33266e;\">---Log end---<br><br>The update process is finished:<br>- If you see error messages in the above log, do not turn off your computer and manually update ChromeOS according to the instructions on github.<br>- Otherwise <a href=javascript:reboot();>click here</a> to reboot your computer and finish the update.</p>") {
+                                                            setIsUpdateDone(true)
+                                                        }
+                                                        setLogs(messages[i])
+                                                    }
+                                                }
+                                            }}
+                                            size="large" edge="end" variant="contained"
+                                            disabled={state.latest_chromeos === state.chromeos_version}
+                                        >
                                             Update
                                         </Button>
                                     </>
@@ -58,6 +74,20 @@ const ChromoUp = () => {
                     </Card>
                 </Grid>
             </Grid>
+            <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
+                {!isUpdateDone && <LinearProgress color="secondary" />}
+                <DialogTitle>Updating ChromeOS...</DialogTitle>
+                <DialogContent>
+                    <Typography mb={1}>Please Don't close this application while update is going on</Typography>
+                    <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
+                        {/* <Typography align='center'>LOGS</Typography> */}
+                        <div dangerouslySetInnerHTML={{ __html: logs }} />
+                    </Paper>
+                </DialogContent>
+                {isUpdateDone &&
+                    <Button sx={{ m: 1 }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                }
+            </Dialog>
         </div>
     );
 };
