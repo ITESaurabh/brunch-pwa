@@ -38,7 +38,8 @@ const routes = [
       },
       { path: "*", element: <NotFound /> }
     ]
-  }
+  },
+  { path: "/", element: <Navigate to="brunch-pwa" /> }
 ];
 
 export default routes/* .filter((route) => route.enabled) */;
