@@ -109,9 +109,9 @@ const BrunchUp = () => {
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
-                                            disabled={state.latest_unstable.replace(" unstable", '') === state.brunch_version}
+                                            disabled={state.latest_unstable?.replace(" unstable", '') === state.brunch_version}
                                         >
-                                            {state.latest_unstable.replace(" unstable", '') === state.brunch_version ? 'Installed': 'Update'}
+                                            {state.latest_unstable?.replace(" unstable", '') === state.brunch_version ? 'Installed': 'Update'}
                                         </Button>
                                     </>
                                 }

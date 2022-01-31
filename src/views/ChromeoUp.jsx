@@ -1,9 +1,10 @@
-import { Button, Card, CardContent, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import { Alert, Button, Card, CardContent, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, Link, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import SEO from '../components/SEO';
 import { useContext, useState } from 'react';
 import { store } from '../utils/store';
 import { blue } from '@mui/material/colors';
 import { ws } from '../utils/wsUtil';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const ChromoUp = () => {
     const { state } = useContext(store)
@@ -70,6 +71,7 @@ const ChromoUp = () => {
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>
+                            <Alert sx={{ mt: 2 }} severity="warning">Before you Update, <br/>We recommend you to check for the any breaking changes via <br/> <Link color="secondary" target="_blank" href="https://github.com/sebanc/brunch/releases"><strong>Brunch's Github </strong><OpenInNewIcon sx={{mb:-0.6, fontSize: 20}} /></Link><br/> and from our <br/><Link color="secondary" target="_blank" href="https://discord.gg/x2EgK2M"><strong>Discord's Announcements </strong><OpenInNewIcon sx={{mb:-0.7, fontSize: 20}} /></Link></Alert>
                         </CardContent>
                     </Card>
                 </Grid>
