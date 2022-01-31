@@ -9,7 +9,8 @@ const initialState = {
     latest_unstable: '',
     chromeos_version: '',
     latest_chromeos: '',
-    isUpdatesEnabled: false
+    isUpdatesEnabled: false,
+    isUnsupported: false
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -75,6 +76,12 @@ const StateProvider = ({ children }) => {
                 return {
                     ...state,
                     isUpdatesEnabled: action.payload,
+                };
+            }
+            case 'SET_UNSUPPORTED': {
+                return {
+                    ...state,
+                    isUnsupported: action.payload,
                 };
             }
             default:

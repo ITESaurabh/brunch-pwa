@@ -66,26 +66,26 @@ const Addons = () => {
                                 disablePadding
                                 secondaryAction={
                                     <>
-                                    <Button endIcon={<OpenInNewIcon />} href="https://github.com/WesBosch/brunch-toolkit/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
-                                        Change-log
-                                    </Button>
-                                    <Button 
-                                      onClick={() => {
-                                        setIsDialogOpen(true);
-                                        ws.send("install-toolkit");
-                                        ws.onmessage = async function (evt) {
-                                            var messages = evt.data.split(':next:');
-                                            for (var i = 0; i < messages.length; i++) {
-                                                if (messages[i] === "Brunch-toolkit installed.") {
-                                                    setIsUpdateDone(true)
+                                        <Button endIcon={<OpenInNewIcon />} href="https://github.com/WesBosch/brunch-toolkit/releases/latest" target="_blank" variant='text' color="secondary" sx={{ mr: 2 }} aria-label="comments">
+                                            Change-log
+                                        </Button>
+                                        <Button
+                                            onClick={() => {
+                                                setIsDialogOpen(true);
+                                                ws.send("install-toolkit");
+                                                ws.onmessage = async function (evt) {
+                                                    var messages = evt.data.split(':next:');
+                                                    for (var i = 0; i < messages.length; i++) {
+                                                        if (messages[i] === "Brunch-toolkit installed.") {
+                                                            setIsUpdateDone(true)
+                                                        }
+                                                        setLogs(messages[i])
+                                                    }
                                                 }
-                                                setLogs(messages[i])
-                                            }
-                                        }
-                                    }}
-                                    size="large" edge="end" variant="contained">
-                                        Install / Update
-                                    </Button>
+                                            }}
+                                            size="large" edge="end" variant="contained">
+                                            Install / Update
+                                        </Button>
                                     </>
                                 }
                             >
@@ -109,7 +109,7 @@ const Addons = () => {
                     </Paper>
                 </DialogContent>
                 {isUpdateDone &&
-                    <Button sx={{ m: 1 }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                        <Button sx={{ m: 1 }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
                 }
             </Dialog>
         </div>
