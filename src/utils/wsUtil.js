@@ -3,15 +3,15 @@ export let ws = new WebSocket("ws://localhost:8080");
 export default function ws_connect(dispatch) {
 
     ws.onopen = function (e) {
-      alert("[open] Connection established");
       ws.send("brunch-version\nlatest-stable\nlatest-unstable\nlatest-chromeos\nchromeos-version");
+      dispatch({type: 'SET_UNSUPPORTED',payload: false})
     };
 
     ws.onclose = function (evt) {
       console.log("Connection closed");
     };
     ws.onerror = function (error) {
-      alert(`[error] ${error.message}`);
+      dispatch({type: 'SET_UNSUPPORTED',payload: true})
     };
     ws.onmessage = async function (evt) {
       var messages = evt.data.split(':next:');

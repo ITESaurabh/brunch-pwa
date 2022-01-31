@@ -6,8 +6,8 @@ import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
-import { ListItem, ListItemIcon, ListItemText, ListSubheader, Switch } from '@mui/material';
-import { useContext, useState } from 'react';
+import { ListItem, ListItemIcon, ListItemText, ListSubheader, Switch, useMediaQuery, useTheme } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
 import BrowserUpdatedOutlinedIcon from '@mui/icons-material/BrowserUpdatedOutlined';
@@ -49,13 +49,15 @@ function Layout() {
 
     const [open, setOpen] = useState(true);
     const { state, dispatch } = useContext(store);
+    const toggleDrawer = () => setOpen(!open);
+    const theme = useTheme()
+    const isPortable = useMediaQuery(theme.breakpoints.down('md'));
 
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
-    // console.log("GLO", state);
-    // const theme = useTheme()
-
+    useEffect(() => {
+        if (isPortable) {
+            setOpen(false);
+        }
+    }, [isPortable])
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -71,12 +73,7 @@ function Layout() {
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        // sx={{ ml: 0 }}
                         onClick={toggleDrawer}
-                    // sx={{
-                    //     marginRight: '36px',
-                    //     ...(open && { display: 'none' }),
-                    // }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -131,10 +128,6 @@ function Layout() {
                 component="main"
                 className="main_bg"
                 sx={{
-                    // backgroundColor: (theme) =>
-                    //     theme.palette.mode === 'light'
-                    //         ? theme.palette.grey[900]
-                    //         : theme.palette.grey[900],
                     flexGrow: 1,
                     height: '100vh',
                     overflow: 'auto',

@@ -1,4 +1,4 @@
-import { Button, createTheme, CssBaseline, IconButton, Snackbar, ThemeProvider } from "@mui/material";
+import { Backdrop, Button, Card, CardContent, createTheme, CssBaseline, Divider, IconButton, Snackbar, ThemeProvider, Typography } from "@mui/material";
 import { Suspense, useEffect, useState, useContext } from "react";
 import { useRoutes } from "react-router-dom";
 import Splash from "./components/Splash";
@@ -52,10 +52,10 @@ const getDesignTokens = (mode) => ({
     borderRadius: 12,
   },
 });
-  export let permission = Notification.requestPermission();
+export let permission = Notification.requestPermission();
 
 function App() {
-  const {state, dispatch } = useContext(store);
+  const { state, dispatch } = useContext(store);
   const [isUpdateAvailable, setIsUpdateAvailable] = useState(false)
   const [waitingWorker, setWaitingWorker] = useState(null)
   const currTheme = getTheme()
@@ -63,7 +63,7 @@ function App() {
   let element = useRoutes(routes);
   const darkModeTheme = createTheme(getDesignTokens(themePref));
 
-  
+
   useEffect(() => {
     if (currTheme === undefined) {
       dispatch({ type: 'SET_THEME', payload: true })
@@ -91,17 +91,17 @@ function App() {
         setWaitingWorker(registration.waiting);
       }
     })
-   
-    permission.then((res)=>{
+
+    permission.then((res) => {
       console.log(res);
       if (res === "denied") {
-       dispatch({type: 'SET_UPDATE_STATE',payload : false})
+        dispatch({ type: 'SET_UPDATE_STATE', payload: false })
       } else {
-        dispatch({type: 'SET_UPDATE_STATE',payload : true})
+        dispatch({ type: 'SET_UPDATE_STATE', payload: true })
       }
       console.log(res)
     })
-    .catch((err)=>console.log(err))
+      .catch((err) => console.log(err))
     if (!Cookies.get("latest_stable")) {
       ws_connect(dispatch);
     } else {
@@ -150,6 +150,43 @@ function App() {
         }
         key={342}
       />
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={state.isUnsupported}
+      >
+        <Card>
+          <CardContent>
+            <Typography
+              variant="h4"
+              align="center"
+              color="primary"
+              my={1}
+            >
+              Unsupported Browser or OS
+            </Typography>
+            <Divider />
+            <Typography
+              variant="subtitle1"
+              color="secondary"
+              align="center"
+            >
+              This application is for ChromeOS with Brunch framework only!
+            </Typography>
+            <Typography
+              variant="h6"
+            >
+              Brunch users may have to enable the brunch "pwa" option in order to use it.
+            </Typography>
+            <Typography
+              align="center"
+              mt={1}
+            >
+            <Button size="large" variant="contained" href="https://github.com/sebanc/brunch" target="_blank">Learn more</Button>
+            </Typography>
+          </CardContent>
+        </Card>
+
+      </Backdrop>
     </ThemeProvider>
   );
 }
