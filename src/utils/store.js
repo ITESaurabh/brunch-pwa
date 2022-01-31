@@ -8,7 +8,8 @@ const initialState = {
     latest_stable: '',
     latest_unstable: '',
     chromeos_version: '',
-    latest_chromeos: ''
+    latest_chromeos: '',
+    isUpdatesEnabled: false
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -65,7 +66,15 @@ const StateProvider = ({ children }) => {
                     latest_stable: Cookies.get("latest_stable"),
                     latest_unstable: Cookies.get("latest_unstable"),
                     chromeos_version: Cookies.get("chromeos_version"),
-                    latest_chromeos: Cookies.get("latest_chromeos")
+                    latest_chromeos: Cookies.get("latest_chromeos"),
+                    isUpdatesEnabled: Boolean(Cookies.get("isUpdateEnabled"))
+                };
+            }
+            case 'SET_UPDATE_STATE': {
+                Cookies.set("isUpdateEnabled", action.payload);
+                return {
+                    ...state,
+                    isUpdatesEnabled: action.payload,
                 };
             }
             default:
