@@ -3,18 +3,25 @@ import SEO from '../components/SEO';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { store } from '../utils/store';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { ws } from '../utils/wsUtil';
 
 const BrunchUp = () => {
-    const { state } = useContext(store)
+    const { state,dispatch } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
 
     // console.log(state);
+
+useEffect(()=>{
+    if (state.brunch_version === '') {
+        dispatch({type: 'SET_UNSUPPORTED',payload: true})
+    }
+},[dispatch, state.brunch_version])
+
     return (
         <div>
             <SEO title="Brunch Updater" />
