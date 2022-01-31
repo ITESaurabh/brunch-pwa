@@ -51,7 +51,7 @@ const ChromoUp = () => {
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
                                                     for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "<p style=\"color:#33266e;\">---Log end---<br><br>The update process is finished:<br>- If you see error messages in the above log, do not turn off your computer and manually update ChromeOS according to the instructions on github.<br>- Otherwise <a href=javascript:reboot();>click here</a> to reboot your computer and finish the update.</p>") {
+                                                        if (messages[i] === "ChromeOS updated.") {
                                                             setIsUpdateDone(true)
                                                         }
                                                         setLogs(messages[i])
