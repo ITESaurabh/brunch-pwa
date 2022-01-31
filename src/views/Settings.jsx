@@ -1,4 +1,4 @@
-import { Avatar, Card, CardContent, Grid, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, Switch, Typography } from '@mui/material';
+import { Avatar, Card, CardContent, Chip, Grid, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, Switch, Typography } from '@mui/material';
 import SEO from '../components/SEO';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
@@ -40,7 +40,7 @@ const Settings = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h6">
-                        Display update notifications for
+                        <Chip label="IN DEVELOPMENT" color="warning" /> Display update notifications for
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
