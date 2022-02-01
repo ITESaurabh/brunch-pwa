@@ -38,7 +38,7 @@ Open https://itesaurabh.github.io/brunch-pwa in your browser and install the PWA
 learn more at [brunch-pwa-info]
 ## Troubleshooting and Support
 
-In case you run into issues while installing or using Brunch, below are the main places where you can find support:
+In case you run into issues while installing or using Brunch or Brunch-PWA, below are the main places where you can find support:
 
 [![Discord][discord-shield]][discord-url]
 [![Reddit][reddit-shield]][reddit-url]
