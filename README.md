@@ -21,6 +21,10 @@
 
 An application to easily update brunch and install add-ons on ChromeOS. now with sexier Ui ;)
 
+<p align="center">
+   <img src="./Screenshot.png" alt="Logo"/>
+</p>
+
 ## Special Thanks
 
 First of all, thanks goes to [Brunch Framework Project][brunch-frame], [Sebanc](https://github.com/sebanc) and Team for their work which was the main cause this project exists in the first place.
