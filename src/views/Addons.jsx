@@ -1,14 +1,22 @@
-import { Typography, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, LinearProgress, Paper, ListItemText, ListItem, Alert } from '@mui/material';
-import { useState } from 'react';
+import { Typography, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, LinearProgress, Paper, ListItemText, ListItem, Alert, DialogActions } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import SEO from '../components/SEO';
 import { ws } from '../utils/wsUtil';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { store } from '../utils/store';
 
 const Addons = () => {
-
+    const { state, dispatch } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
+
+    useEffect(() => {
+        if (state.brunch_version === '') {
+            dispatch({ type: 'SET_UNSUPPORTED', payload: true })
+        }
+    }, [dispatch, state.brunch_version])
+
     return (
         <div>
             <SEO title="Brunch Addons" />
@@ -109,7 +117,10 @@ const Addons = () => {
                     </Paper>
                 </DialogContent>
                 {isUpdateDone &&
-                        <Button sx={{ m: 1 }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
+                   <DialogActions>
+                        <Button sx={{ m: 1, width: '50%' }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                        <Button sx={{ m: 1, width: '50%' }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
+                    </DialogActions>
                 }
             </Dialog>
         </div>

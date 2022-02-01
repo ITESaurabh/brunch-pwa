@@ -78,8 +78,6 @@ function App() {
     window.location.reload(true);
   };
 
-  // const time = useRef(Date.now()); //can be let, depending of your logic
-
   useEffect(() => {
     serviceWorkerRegistration.register({
       onSuccess(registration) {
