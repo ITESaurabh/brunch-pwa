@@ -40,9 +40,9 @@ learn more at [brunch-pwa-info]
 
 In case you run into issues while installing or using Brunch, below are the main places where you can find support:
 
-[Discord][discord-url]
-[Reddit][reddit-url]
-[Telegram][telegram-url]
+[![Discord][discord-shield]][discord-url]
+[![Reddit][reddit-shield]][reddit-url]
+[![Telegram][telegram-shield]][telegram-url]
 
 
 [brunch-frame]: https://github.com/sebanc/brunch
