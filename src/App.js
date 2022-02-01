@@ -100,9 +100,8 @@ function App() {
       console.log(res)
     })
       .catch((err) => console.log(err))
-    if (!Cookies.get("latest_stable")) {
-      ws_connect(dispatch);
-    } else {
+    ws_connect(dispatch);
+    if (Cookies.get("latest_stable")) {
       dispatch({ type: 'SET_ALL_TO_STATE' });
     }
 
@@ -179,7 +178,7 @@ function App() {
               align="center"
               mt={1}
             >
-            <Button size="large" variant="contained" href="https://github.com/sebanc/brunch" target="_blank">Learn more</Button>
+              <Button size="large" variant="contained" href="https://github.com/sebanc/brunch" target="_blank">Learn more</Button>
             </Typography>
           </CardContent>
         </Card>

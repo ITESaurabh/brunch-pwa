@@ -11,6 +11,7 @@ export default function ws_connect(dispatch) {
       console.log("Connection closed");
     };
     ws.onerror = function (error) {
+      console.log(error);
       dispatch({type: 'SET_UNSUPPORTED',payload: true})
     };
     ws.onmessage = async function (evt) {
