@@ -77,7 +77,7 @@ const ChromoUp = () => {
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>
-                            <Alert sx={{ mt: 2 }} severity="warning">Before you Update, <br/>We recommend you to check for the any breaking changes via <br/> <Link color="secondary" target="_blank" href="https://github.com/sebanc/brunch/releases"><strong>Brunch's Github </strong><OpenInNewIcon sx={{mb:-0.6, fontSize: 20}} /></Link><br/> and from our <br/><Link color="secondary" target="_blank" href="https://discord.gg/x2EgK2M"><strong>Discord's Announcements </strong><OpenInNewIcon sx={{mb:-0.7, fontSize: 20}} /></Link></Alert>
+                            <Alert sx={{ mt: 2 }} severity="warning">Before you Update, <br/>We recommend you to check for the any breaking changes via <br/> <Link color="secondary" target="_blank" href="https://github.com/sebanc/brunch/releases"><strong>Brunch's Github </strong><OpenInNewIcon sx={{mb:-0.6, fontSize: 20}} /></Link><br/> and from our <br/><Link color="secondary" target="_blank" href="https://discord.gg/2uy5w4uzB7"><strong>Discord's Announcements </strong><OpenInNewIcon sx={{mb:-0.7, fontSize: 20}} /></Link></Alert>
                         </CardContent>
                     </Card>
                 </Grid>

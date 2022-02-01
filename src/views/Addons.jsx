@@ -1,4 +1,4 @@
-import { Typography, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, LinearProgress, Paper, ListItemText, ListItem, Alert } from '@mui/material';
+import { Typography, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, LinearProgress, Paper, ListItemText, ListItem, Alert, DialogActions } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import SEO from '../components/SEO';
 import { ws } from '../utils/wsUtil';
@@ -117,7 +117,10 @@ const Addons = () => {
                     </Paper>
                 </DialogContent>
                 {isUpdateDone &&
-                    <Button sx={{ m: 1 }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
+                   <DialogActions>
+                        <Button sx={{ m: 1, width: '50%' }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
+                        <Button sx={{ m: 1, width: '50%' }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
+                    </DialogActions>
                 }
             </Dialog>
         </div>
