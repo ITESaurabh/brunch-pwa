@@ -69,13 +69,6 @@ useEffect(()=>{
                                                         }
                                                         setLogs(logs += message + '<br>')
                                                     })
-                                                    // var messages = evt.data.split(':next:');
-                                                    // for (var i = 0; i < messages.length; i++) {
-                                                    //     if (messages[i] === "Brunch updated.") {
-                                                    //         setIsUpdateDone(true)
-                                                    //     }
-                                                    //     setLogs(messages[i])
-                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
@@ -120,13 +113,6 @@ useEffect(()=>{
                                                         }
                                                         setLogs(logs += message + '<br>')
                                                     })
-                                                    // var messages = evt.data.split(':next:');
-                                                    // for (var i = 0; i < messages.length; i++) {
-                                                    //     if (messages[i] === "Brunch updated.") {
-                                                    //         setIsUpdateDone(true)
-                                                    //     }
-                                                    //     setLogs(messages[i])
-                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
@@ -148,11 +134,11 @@ useEffect(()=>{
             </Grid>
             <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
                 {!isUpdateDone && <LinearProgress color="secondary" />}
-                <DialogTitle>Updating Brunch...</DialogTitle>
+                <DialogTitle>{!isUpdateDone ? 'Updating Brunch...' : 'Brunch Updated!'}</DialogTitle>
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
-                        {/* <Typography align='center'>LOGS</Typography> */}
+                        <Typography align='center'>LOGS</Typography>
                         <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>

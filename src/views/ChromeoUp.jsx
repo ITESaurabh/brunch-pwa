@@ -12,11 +12,11 @@ const ChromoUp = () => {
     let [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         if (state.brunch_version === '') {
-            dispatch({type: 'SET_UNSUPPORTED',payload: true})
+            dispatch({ type: 'SET_UNSUPPORTED', payload: true })
         }
-    },[dispatch, state.brunch_version])
+    }, [dispatch, state.brunch_version])
 
     return (
         <div>
@@ -62,13 +62,6 @@ const ChromoUp = () => {
                                                         }
                                                         setLogs(logs += message + '<br>')
                                                     })
-                                                    // var messages = evt.data.split(':next:');
-                                                    // for (var i = 0; i < messages.length; i++) {
-                                                    //     if (messages[i] === "ChromeOS updated.") {
-                                                    //         setIsUpdateDone(true)
-                                                    //     }
-                                                    //     setLogs(messages[i])
-                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
@@ -84,18 +77,18 @@ const ChromoUp = () => {
                                     primaryTypographyProps={{ variant: 'h6', fontWeight: 500 }}
                                 />
                             </ListItem>
-                            <Alert sx={{ mt: 2 }} severity="warning">Before you Update, <br/>We recommend you to check for the any breaking changes via <br/> <Link color="secondary" target="_blank" href="https://github.com/sebanc/brunch/releases"><strong>Brunch's Github </strong><OpenInNewIcon sx={{mb:-0.6, fontSize: 20}} /></Link><br/> and from our <br/><Link color="secondary" target="_blank" href="https://discord.gg/2uy5w4uzB7"><strong>Discord's Announcements </strong><OpenInNewIcon sx={{mb:-0.7, fontSize: 20}} /></Link></Alert>
+                            <Alert sx={{ mt: 2 }} severity="warning">Before you Update, <br />We recommend you to check for the any breaking changes via <br /> <Link color="secondary" target="_blank" href="https://github.com/sebanc/brunch/releases"><strong>Brunch's Github </strong><OpenInNewIcon sx={{ mb: -0.6, fontSize: 20 }} /></Link><br /> and from our <br /><Link color="secondary" target="_blank" href="https://discord.gg/2uy5w4uzB7"><strong>Discord's Announcements </strong><OpenInNewIcon sx={{ mb: -0.7, fontSize: 20 }} /></Link></Alert>
                         </CardContent>
                     </Card>
                 </Grid>
             </Grid>
             <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
                 {!isUpdateDone && <LinearProgress color="secondary" />}
-                <DialogTitle>Updating ChromeOS...</DialogTitle>
+                <DialogTitle>{!isUpdateDone ? 'Updating ChromeOS...' : 'ChromeOS Updated!'}</DialogTitle>
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while update is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
-                        {/* <Typography align='center'>LOGS</Typography> */}
+                        <Typography align='center'>LOGS</Typography>
                         <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>

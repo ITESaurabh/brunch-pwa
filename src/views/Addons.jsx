@@ -108,11 +108,11 @@ const Addons = () => {
             </Grid>
             <Dialog open={isDialogOpen} minWidth="md" maxWidth="md">
                 {!isUpdateDone && <LinearProgress color="secondary" />}
-                <DialogTitle>Installing Addon...</DialogTitle>
+                <DialogTitle>{!isUpdateDone ? 'Installing Addon...' : 'Addon Installed!'}</DialogTitle>
                 <DialogContent>
                     <Typography mb={1}>Please Don't close this application while installation is going on</Typography>
                     <Paper className='konsole' sx={{ background: 'black', color: 'white' }}>
-                        {/* <Typography align='center'>LOGS</Typography> */}
+                        <Typography align='center'>LOGS</Typography>
                         <div dangerouslySetInnerHTML={{ __html: logs }} />
                     </Paper>
                 </DialogContent>
