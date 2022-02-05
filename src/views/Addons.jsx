@@ -89,13 +89,6 @@ const Addons = () => {
                                                         }
                                                         setLogs(logs += message + '<br>')
                                                     })
-                                                    // for (var i = 0; i < messages.length; i++) {
-                                                    //     if (messages[i] === "Brunch-toolkit installed.") {
-                                                    //         setIsUpdateDone(true)
-                                                    //     }
-                                                    //      setLogs(`${logs+messages[i]}`)
-                                                    //     // setLogs(messages[i])
-                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained">

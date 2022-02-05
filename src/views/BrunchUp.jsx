@@ -11,7 +11,7 @@ import { ws } from '../utils/wsUtil';
 const BrunchUp = () => {
     const { state,dispatch } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    const [logs, setLogs] = useState("fetching logs....</br>")
+    let [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
 
     // console.log(state);
@@ -63,12 +63,19 @@ useEffect(()=>{
                                                 ws.send("update-stable");
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
-                                                    for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "Brunch updated.") {
+                                                    messages.forEach(message => {
+                                                        if (message === "Brunch updated.") {
                                                             setIsUpdateDone(true)
                                                         }
-                                                        setLogs(messages[i])
-                                                    }
+                                                        setLogs(logs += message + '<br>')
+                                                    })
+                                                    // var messages = evt.data.split(':next:');
+                                                    // for (var i = 0; i < messages.length; i++) {
+                                                    //     if (messages[i] === "Brunch updated.") {
+                                                    //         setIsUpdateDone(true)
+                                                    //     }
+                                                    //     setLogs(messages[i])
+                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
@@ -107,12 +114,19 @@ useEffect(()=>{
                                                 ws.send("update-unstable");
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
-                                                    for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "Brunch updated.") {
+                                                    messages.forEach(message => {
+                                                        if (message === "Brunch updated.") {
                                                             setIsUpdateDone(true)
                                                         }
-                                                        setLogs(messages[i])
-                                                    }
+                                                        setLogs(logs += message + '<br>')
+                                                    })
+                                                    // var messages = evt.data.split(':next:');
+                                                    // for (var i = 0; i < messages.length; i++) {
+                                                    //     if (messages[i] === "Brunch updated.") {
+                                                    //         setIsUpdateDone(true)
+                                                    //     }
+                                                    //     setLogs(messages[i])
+                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"

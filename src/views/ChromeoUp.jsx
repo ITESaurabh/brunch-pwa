@@ -9,7 +9,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 const ChromoUp = () => {
     const { state, dispatch } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    const [logs, setLogs] = useState("fetching logs....</br>")
+    let [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
 
     useEffect(()=>{
@@ -56,12 +56,19 @@ const ChromoUp = () => {
                                                 ws.send("update-chromeos");
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
-                                                    for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "ChromeOS updated.") {
+                                                    messages.forEach(message => {
+                                                        if (message === "ChromeOS updated.") {
                                                             setIsUpdateDone(true)
                                                         }
-                                                        setLogs(messages[i])
-                                                    }
+                                                        setLogs(logs += message + '<br>')
+                                                    })
+                                                    // var messages = evt.data.split(':next:');
+                                                    // for (var i = 0; i < messages.length; i++) {
+                                                    //     if (messages[i] === "ChromeOS updated.") {
+                                                    //         setIsUpdateDone(true)
+                                                    //     }
+                                                    //     setLogs(messages[i])
+                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained"
