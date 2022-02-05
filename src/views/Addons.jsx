@@ -8,7 +8,7 @@ import { store } from '../utils/store';
 const Addons = () => {
     const { state, dispatch } = useContext(store)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    const [logs, setLogs] = useState("fetching logs....</br>")
+    let [logs, setLogs] = useState("fetching logs....</br>")
     const [isUpdateDone, setIsUpdateDone] = useState(false)
 
     useEffect(() => {
@@ -83,12 +83,19 @@ const Addons = () => {
                                                 ws.send("install-toolkit");
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
-                                                    for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "Brunch-toolkit installed.") {
+                                                    messages.forEach(message => {
+                                                        if (message === "Brunch-toolkit installed.") {
                                                             setIsUpdateDone(true)
                                                         }
-                                                        setLogs(messages[i])
-                                                    }
+                                                        setLogs(logs += message + '<br>')
+                                                    })
+                                                    // for (var i = 0; i < messages.length; i++) {
+                                                    //     if (messages[i] === "Brunch-toolkit installed.") {
+                                                    //         setIsUpdateDone(true)
+                                                    //     }
+                                                    //      setLogs(`${logs+messages[i]}`)
+                                                    //     // setLogs(messages[i])
+                                                    // }
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained">
@@ -117,7 +124,7 @@ const Addons = () => {
                     </Paper>
                 </DialogContent>
                 {isUpdateDone &&
-                   <DialogActions>
+                    <DialogActions>
                         <Button sx={{ m: 1, width: '50%' }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
                         <Button sx={{ m: 1, width: '50%' }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
                     </DialogActions>
