@@ -43,12 +43,12 @@ const Addons = () => {
                                                 ws.send("install-toolchain");
                                                 ws.onmessage = async function (evt) {
                                                     var messages = evt.data.split(':next:');
-                                                    for (var i = 0; i < messages.length; i++) {
-                                                        if (messages[i] === "Brunch-toolchain and brioche installed.") {
+                                                    messages.forEach(message => {
+                                                        if (message === "Brunch-toolchain and brioche installed.") {
                                                             setIsUpdateDone(true)
                                                         }
-                                                        setLogs(messages[i])
-                                                    }
+                                                        setLogs(logs += message + '<br>')
+                                                    })
                                                 }
                                             }}
                                             size="large" edge="end" variant="contained">
@@ -119,7 +119,7 @@ const Addons = () => {
                 {isUpdateDone &&
                     <DialogActions>
                         <Button sx={{ m: 1, width: '50%' }} variant="contained" onClick={() => ws.send("reboot")}>Reboot now</Button>
-                        <Button sx={{ m: 1, width: '50%' }} variant="contained" color="secondary" onClick={() => setIsDialogOpen(false)}>close</Button>
+                        <Button sx={{ m: 1, width: '50%' }} variant="contained" color="secondary" onClick={() => {setIsDialogOpen(false); setLogs("fetching logs....</br>")}}>close</Button>
                     </DialogActions>
                 }
             </Dialog>
